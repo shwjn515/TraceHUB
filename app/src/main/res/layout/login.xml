@@ -186,7 +186,8 @@
                 android:background="@drawable/bj_denglu"
                 android:text="登    录"
                 android:textColor="#ffffff"
-                android:textSize="25sp" />
+                android:textSize="25sp"
+                app:strokeColor="#ffffff" />
 
             <TextView
                 android:layout_width="0dp"
