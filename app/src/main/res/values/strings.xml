@@ -3,7 +3,7 @@
     <string name="title_home">Home</string>
     <string name="title_dashboard">Dashboard</string>
     <string name="title_notifications">Notifications</string>
-    <string name="title_one">出发吧</string>
-    <string name="title_two">社区</string>
+    <string name="title_one">出发吧!</string>
+    <string name="title_two">TraceHub</string>
     <string name="title_three">我的</string>
 </resources>

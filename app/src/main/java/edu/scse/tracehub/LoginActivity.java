@@ -25,7 +25,7 @@ public class LoginActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 //跳转到菜单页面
-                Intent intent = new Intent(edu.scse.tracehub.LoginActivity.this, MainActivity.class);
+                Intent intent = new Intent(edu.scse.tracehub.LoginActivity.this, edu.scse.tracehub.MainActivity.class);
                 startActivity(intent);
             }
         });

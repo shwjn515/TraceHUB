@@ -14,6 +14,9 @@
     <color name="saswell_dark_grey">#FF333333</color>
     <color name="saswell_blue">#FF007AFF</color>
     <color name="saswell_green">#FF00FF00</color>
+    <color name="saswell_pink">#ecc9df</color>
+    <color name="saswell_pink2">#e495c7</color>
+
 
     <color name="saswell_yellow_translucent">#80FF9500</color>
 
