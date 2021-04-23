@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/th_logint"
+    android:background="@color/saswell_pink"
     android:orientation="vertical"
     tools:context=".LoginActivity">
 
@@ -81,11 +81,11 @@
                     android:background="@drawable/btu_press"
                     android:drawableLeft="@drawable/icon_username"
                     android:drawablePadding="10dp"
-                    android:hint="请输入用户名"
+                    android:hint="用户名"
                     android:paddingLeft="20dp"
                     android:singleLine="true"
                     android:textColor="#ffffff"
-                    android:textColorHint="#cccccc"
+                    android:textColorHint="#ffffff"
                     android:textSize="20sp" />
 
                 <Button
@@ -117,12 +117,12 @@
                     android:background="@drawable/btu_press"
                     android:drawableLeft="@drawable/icon_passage"
                     android:drawablePadding="10dp"
-                    android:hint="请输入密码"
+                    android:hint="密码"
                     android:inputType="textPassword"
                     android:paddingLeft="20dp"
                     android:singleLine="true"
                     android:textColor="#ffffff"
-                    android:textColorHint="#cccccc"
+                    android:textColorHint="#ffffff"
                     android:textSize="20sp" />
 
                 <Button
@@ -145,7 +145,7 @@
                 android:layout_weight="1.2"
                 android:background="#00FDFCFC"
                 android:text="忘记密码？"
-                android:textColor="#cccccc"
+                android:textColor="#ffffff"
                 android:textSize="15sp" />
 
             <TextView
@@ -206,7 +206,7 @@
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/btn_denglu"
                 android:text="还没有账号？"
-                android:textColor="#cccccc"
+                android:textColor="#ffffff"
                 android:textSize="17sp" />
 
             <Button
