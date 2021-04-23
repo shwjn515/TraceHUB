@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/th_logint"
+    android:background="@color/saswell_pink"
     android:orientation="vertical"
     tools:context="edu.scse.tracehub.LoginActivity">
 
@@ -81,11 +81,11 @@
                     android:background="@drawable/btu_press"
                     android:drawableLeft="@drawable/icon_username"
                     android:drawablePadding="10dp"
-                    android:hint="请输入用户名"
+                    android:hint="用户名"
                     android:paddingLeft="20dp"
                     android:singleLine="true"
                     android:textColor="#ffffff"
-                    android:textColorHint="#cccccc"
+                    android:textColorHint="#ffffff"
                     android:textSize="20sp" />
 
                 <Button
@@ -117,12 +117,12 @@
                     android:background="@drawable/btu_press"
                     android:drawableLeft="@drawable/icon_passage"
                     android:drawablePadding="10dp"
-                    android:hint="请输入密码"
+                    android:hint="密码"
                     android:inputType="textPassword"
                     android:paddingLeft="20dp"
                     android:singleLine="true"
                     android:textColor="#ffffff"
-                    android:textColorHint="#cccccc"
+                    android:textColorHint="#ffffff"
                     android:textSize="20sp" />
 
                 <Button
@@ -158,7 +158,7 @@
                     android:paddingLeft="20dp"
                     android:singleLine="true"
                     android:textColor="#ffffff"
-                    android:textColorHint="#cccccc"
+                    android:textColorHint="#ffffff"
                     android:textSize="20sp" />
 
                 <Button

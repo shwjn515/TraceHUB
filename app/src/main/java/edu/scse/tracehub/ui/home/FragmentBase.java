@@ -4,13 +4,9 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TextView;
 
-import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-import androidx.lifecycle.Observer;
-import androidx.lifecycle.ViewModelProvider;
 
 import com.amap.api.maps.AMap;
 import com.amap.api.maps.CameraUpdateFactory;
@@ -22,50 +18,39 @@ import java.lang.reflect.Field;
 
 import edu.scse.tracehub.R;
 
-public class HomeFragment extends Fragment {
-
-    private HomeViewModel homeViewModel;
+public abstract class FragmentBase extends Fragment {
     private TextureMapView textureMapView;
     private AMap aMap;
-    public static final LatLng TIANJIN = new LatLng(39.13,117.2);// 杭州市经纬度
-    protected static CameraPosition cameraPosition;
+    abstract LatLng getTarget();
+    abstract CameraPosition getCameraPosition() ;
+    abstract void setCameraPosition(CameraPosition cameraPosition);
 
-    public View onCreateView(@NonNull LayoutInflater inflater,
-                             ViewGroup container, Bundle savedInstanceState) {
-        homeViewModel =
-                new ViewModelProvider(this).get(HomeViewModel.class);
-        View root = inflater.inflate(R.layout.navigation_home, container, false);
-        return root;
-    }
-    LatLng getTarget() {
-        return TIANJIN;
-    }
-    CameraPosition getCameraPosition() {
-        return cameraPosition;
-    }
-    void setCameraPosition(CameraPosition cameraPosition) {
-        cameraPosition = cameraPosition;
-    }
     @Override
-    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
-        super.onActivityCreated(savedInstanceState);
-        textureMapView = (TextureMapView) getView().findViewById(R.id.map);
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
 
-        if (textureMapView != null) {
-            textureMapView.onCreate(savedInstanceState);
-            aMap = textureMapView.getMap();
-            if (getCameraPosition() == null) {
-                aMap.moveCamera(CameraUpdateFactory.newCameraPosition(new CameraPosition(getTarget(), 10, 0, 0)));
-            }else {
-                aMap.moveCamera(CameraUpdateFactory.newCameraPosition(getCameraPosition()));
-            }
-        }
     }
+
+
+    @Nullable
+    @Override
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        View view = inflater.inflate(R.layout.navigation_home, container, false);
+        return view;
+    }
+
+
+
+
+    /**
+     * 方法必须重写
+     */
     @Override
     public void onResume() {
         super.onResume();
         textureMapView.onResume();
     }
+
     /**
      * 方法必须重写
      */
@@ -88,13 +73,11 @@ public class HomeFragment extends Fragment {
      * 方法必须重写
      */
     @Override
-    public void onDestroyView() {
-        super.onDestroyView();
+    public void onDestroy() {
         setCameraPosition(aMap.getCameraPosition());
         super.onDestroy();
         textureMapView.onDestroy();
     }
-    /*
     @Override
     public void onDetach() {
         super.onDetach();
@@ -107,5 +90,5 @@ public class HomeFragment extends Fragment {
         } catch (IllegalAccessException e) {
             throw new RuntimeException(e);
         }
-    }*/
+    }
 }

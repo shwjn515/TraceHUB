@@ -5,17 +5,7 @@
     android:layout_height="match_parent"
     tools:context=".ui.notifications.NotificationsFragment"
     android:orientation="vertical"
-    android:background="@color/saswell_pink"><![CDATA[>
-
-
-
-
-
-
-
-    ]]>
-
-    <TextView
+    android:background="@color/saswell_pink">
         android:id="@+id/textView2"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
