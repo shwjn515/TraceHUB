@@ -48,10 +48,10 @@ public class LoginActivity extends AppCompatActivity {
                 if (eT_password.getInputType() == 128) {
                     //如果现在是显示密码模式
                     eT_password.setInputType(129);//设置为隐藏密码
-                    mBtn_yincang.setBackgroundDrawable(getResources().getDrawable(R.drawable.icon_yincang));
+                    //mBtn_yincang.setBackgroundDrawable(getResources().getDrawable(R.drawable.icon_yincang));
                 } else {
                     eT_password.setInputType(128);//设置为显示密码
-                    mBtn_yincang.setBackgroundDrawable(getResources().getDrawable(R.drawable.icon_xianshi));
+                    //mBtn_yincang.setBackgroundDrawable(getResources().getDrawable(R.drawable.icon_xianshi));
                 }
                 eT_password.setSelection(eT_password.getText().length());//设置光标的位置到末尾
             }
