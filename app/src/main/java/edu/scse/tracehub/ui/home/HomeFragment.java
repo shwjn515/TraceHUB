@@ -1,5 +1,6 @@
 package edu.scse.tracehub.ui.home;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -12,6 +13,9 @@ import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
+import com.amap.api.location.AMapLocationClient;
+import com.amap.api.location.AMapLocationClientOption;
+import com.amap.api.location.AMapLocationListener;
 import com.amap.api.maps.AMap;
 import com.amap.api.maps.CameraUpdateFactory;
 import com.amap.api.maps.TextureMapView;
@@ -27,7 +31,7 @@ public class HomeFragment extends Fragment {
     private HomeViewModel homeViewModel;
     private TextureMapView textureMapView;
     private AMap aMap;
-    public static final LatLng TIANJIN = new LatLng(39.13,117.2);// 杭州市经纬度
+    public static final LatLng TIANJIN = new LatLng(39.13,117.2);// 天津市经纬度
     protected static CameraPosition cameraPosition;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
@@ -50,7 +54,6 @@ public class HomeFragment extends Fragment {
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
         textureMapView = (TextureMapView) getView().findViewById(R.id.map);
-
         if (textureMapView != null) {
             textureMapView.onCreate(savedInstanceState);
             aMap = textureMapView.getMap();
@@ -61,6 +64,7 @@ public class HomeFragment extends Fragment {
             }
         }
     }
+
     @Override
     public void onResume() {
         super.onResume();
@@ -94,18 +98,5 @@ public class HomeFragment extends Fragment {
         super.onDestroy();
         textureMapView.onDestroy();
     }
-    /*
-    @Override
-    public void onDetach() {
-        super.onDetach();
-        try {
-            Field childFragmentManager = Fragment.class.getDeclaredField("mChildFragmentManager");
-            childFragmentManager.setAccessible(true);
-            childFragmentManager.set(this, null);
-        } catch (NoSuchFieldException e) {
-            throw new RuntimeException(e);
-        } catch (IllegalAccessException e) {
-            throw new RuntimeException(e);
-        }
-    }*/
 }
+

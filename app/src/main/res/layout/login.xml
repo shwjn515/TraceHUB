@@ -36,7 +36,6 @@
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/tv_1"
                 android:layout_centerHorizontal="true"
-
                 android:text="登录"
                 android:textColor="#ffffff"
                 android:textSize="31sp" />

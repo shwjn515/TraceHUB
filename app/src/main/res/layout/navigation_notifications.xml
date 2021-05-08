@@ -38,12 +38,13 @@
                     android:text="欢迎您，"
                     android:textColor="#ffffff"
                     android:textSize="20sp"/>
+
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="157****0915"
+                    android:text="156****8293"
                     android:textColor="#ffffff"
-                    android:textSize="20sp"/>
+                    android:textSize="20sp" />
 
             </LinearLayout>
 
