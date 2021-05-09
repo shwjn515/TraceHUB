@@ -14,6 +14,8 @@ import androidx.recyclerview.widget.RecyclerView;
 import java.util.ArrayList;
 import java.util.List;
 
+import edu.scse.tracehub.R;
+
 public class CatAdapter extends RecyclerView.Adapter<CatAdapter.ViewHolder> {
     private Context context;
     private List<Cat> cats = new ArrayList<>();
@@ -45,7 +47,7 @@ public class CatAdapter extends RecyclerView.Adapter<CatAdapter.ViewHolder> {
         if (context == null) {//设置上下文环境
             context = parent.getContext();
         }
-        View view = LayoutInflater.from(context).inflate(R.layout.cat_item, parent, false);
+        View view = LayoutInflater.from(context).inflate(R.layout.card, parent, false);
         return new ViewHolder(view);
     }
     //布置item内容
