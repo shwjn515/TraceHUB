@@ -151,24 +151,15 @@
                     android:layout_width="fill_parent"
                     android:layout_height="fill_parent"
                     android:background="@drawable/btu_press"
-                    android:drawableLeft="@drawable/icon_passage"
+                    android:drawableLeft="@drawable/icon_phone"
                     android:drawablePadding="10dp"
-                    android:hint="请再次输入密码"
+                    android:hint="手机号"
                     android:inputType="textPassword"
                     android:paddingLeft="20dp"
                     android:singleLine="true"
                     android:textColor="#ffffff"
                     android:textColorHint="#ffffff"
                     android:textSize="20sp" />
-
-                <Button
-                    android:id="@+id/btn_yincang2"
-                    android:layout_width="23dp"
-                    android:layout_height="23dp"
-                    android:layout_gravity="center_vertical"
-                    android:layout_marginLeft="-40dp"
-                    android:layout_toRightOf="@+id/et_3"
-                    android:background="@drawable/icon_yincang" />
 
             </LinearLayout>
         </LinearLayout>
@@ -193,16 +184,16 @@
 
             <TextView
                 android:layout_width="match_parent"
-                android:layout_height="60dp"
+                android:layout_height="81dp"
                 android:layout_weight="1"
                 android:textSize="30sp" />
 
         </LinearLayout>
 
         <Button
-            android:id="@+id/btn_zhuce"
-            android:layout_width="120dp"
-            android:layout_height="234dp"
+            android:id="@+id/btn_zhuce2"
+            android:layout_width="162dp"
+            android:layout_height="83dp"
             android:layout_gravity="center"
             android:layout_weight="5"
             android:background="@drawable/bj_denglu"
@@ -216,7 +207,7 @@
 
             <TextView
                 android:layout_width="match_parent"
-                android:layout_height="110dp"
+                android:layout_height="167dp"
                 android:layout_weight="1"
                 android:textSize="30sp" />
 
