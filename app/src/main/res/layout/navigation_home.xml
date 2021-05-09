@@ -5,15 +5,15 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/saswell_pink"
-    tools:context=".ui.home.HomeFragment" >
+    tools:context=".ui.home.HomeFragment">
 
     <ToggleButton
         android:id="@+id/toggleButton"
-        android:layout_width="120dp"
-        android:layout_height="71dp"
+        android:layout_width="100dp"
+        android:layout_height="61.8dp"
         android:background="@drawable/togglebutton"
-        android:textOn=""
         android:textOff=""
+        android:textOn=""
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
@@ -21,14 +21,27 @@
         app:layout_constraintTop_toTopOf="@+id/map"
         app:layout_constraintVertical_bias="0.805" />
 
+    <TextView
+        android:id="@+id/textView1"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="@color/saswell_pink"
+        android:gravity="center"
+        android:text="  记录生活记录你！"
+        android:textColor="@color/saswell_white"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        tools:ignore="MissingConstraints" />
     <com.amap.api.maps.TextureMapView
         android:id="@+id/map"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:layout_marginTop="50dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.0" />
+        app:layout_constraintStart_toStartOf="parent" >
+
+
+    </com.amap.api.maps.TextureMapView>
 </androidx.constraintlayout.widget.ConstraintLayout>

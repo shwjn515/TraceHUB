@@ -99,6 +99,7 @@ public class HomeFragment extends Fragment implements AMapLocationListener, Loca
         MyLocationStyle myLocationStyle = new MyLocationStyle();//初始化定位蓝点样式类
         myLocationStyle.strokeColor(Color.argb(0, 0, 0, 0));// 设置圆形的边框颜色 
         myLocationStyle.radiusFillColor(Color.argb(0, 0, 0, 0));// 设置圆形的填充颜色
+
         aMap.setMyLocationStyle(myLocationStyle);
         //开始定位
         location();
