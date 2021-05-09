@@ -198,6 +198,19 @@ public class HomeFragment extends Fragment implements AMapLocationListener, Loca
         super.onResume();
         textureMapView.onResume();
     }
+
+    /**
+     * CompoundButton.OnCheckedChangeListener checkedChangeListener = new CompoundButton.OnCheckedChangeListener() {
+     *         @Override
+     *         public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+     *
+     *
+     *         }
+     *     };
+     *     toggleButton.setOnCheckedChangeListener(checkedChangeListener);
+     *    此处为togglebutton按钮切换使用方法
+     */
+
     /**
      * 方法必须重写
      */

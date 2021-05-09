@@ -7,10 +7,13 @@
     android:background="@color/saswell_pink"
     tools:context=".ui.home.HomeFragment" >
 
-    <Button
+    <ToggleButton
+        android:id="@+id/toggleButton"
         android:layout_width="120dp"
         android:layout_height="71dp"
-        android:background="@drawable/th_go"
+        android:background="@drawable/togglebutton"
+        android:textOn=""
+        android:textOff=""
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
