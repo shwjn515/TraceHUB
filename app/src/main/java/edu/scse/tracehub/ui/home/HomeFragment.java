@@ -1,5 +1,6 @@
 package edu.scse.tracehub.ui.home;
 
+import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -40,7 +41,7 @@ public class HomeFragment extends Fragment implements AMapLocationListener, Loca
     //地图控件
     private TextureMapView textureMapView;
     private AMap aMap;
-    public static final LatLng TIANJIN = new LatLng(39.13,117.2);// 杭州市经纬度
+    public static final LatLng TIANJIN = new LatLng(39.13,117.2);// 天津市经纬度
     protected static CameraPosition cameraPosition;
 
     //声明AMapLocationClient类对象，定位发起端
@@ -89,13 +90,20 @@ public class HomeFragment extends Fragment implements AMapLocationListener, Loca
             }
         }
         UiSettings settings = aMap.getUiSettings();
-        aMap.setLocationSource(this);//设置了定位的监听
+        //设置了定位的监听
+        aMap.setLocationSource(this);
         // 是否显示定位按钮
         settings.setMyLocationButtonEnabled(true);
-        aMap.setMyLocationEnabled(true);//显示定位层并且可以触发定位,默认是flase
+        //显示定位层并且可以触发定位,默认是flase
+        aMap.setMyLocationEnabled(true);
+        MyLocationStyle myLocationStyle = new MyLocationStyle();//初始化定位蓝点样式类
+        myLocationStyle.strokeColor(Color.argb(0, 0, 0, 0));// 设置圆形的边框颜色 
+        myLocationStyle.radiusFillColor(Color.argb(0, 0, 0, 0));// 设置圆形的填充颜色
+        aMap.setMyLocationStyle(myLocationStyle);
         //开始定位
         location();
     }
+
     private void location() {
         //初始化定位
         mLocationClient = new AMapLocationClient(this.getContext());
@@ -150,6 +158,7 @@ public class HomeFragment extends Fragment implements AMapLocationListener, Loca
                     aMap.moveCamera(CameraUpdateFactory.changeLatLng(new LatLng(aMapLocation.getLatitude(), aMapLocation.getLongitude())));
                     //点击定位按钮 能够将地图的中心移动到定位点
                     mListener.onLocationChanged(aMapLocation);
+
                     //添加图钉
                     //  aMap.addMarker(getMarkerOptions(amapLocation));
                     //获取定位信息
