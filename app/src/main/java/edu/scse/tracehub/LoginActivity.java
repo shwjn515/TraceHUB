@@ -13,6 +13,7 @@ public class LoginActivity extends AppCompatActivity {
     private Button mBtn_delete;
     private EditText eT_password;
     private Button mBtn_yincang;
+    private Button mBtn_zhuce;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,6 +27,16 @@ public class LoginActivity extends AppCompatActivity {
             public void onClick(View v) {
                 //跳转到菜单页面
                 Intent intent = new Intent(edu.scse.tracehub.LoginActivity.this, edu.scse.tracehub.MainActivity.class);
+                startActivity(intent);
+            }
+        });
+        //设置注册按钮点击事件
+        mBtn_zhuce = findViewById(R.id.btn_zhuce);
+        mBtn_zhuce.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //跳转到菜单页面
+                Intent intent = new Intent(edu.scse.tracehub.LoginActivity.this, edu.scse.tracehub.Register.class);
                 startActivity(intent);
             }
         });
