@@ -6,6 +6,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -27,16 +28,16 @@ import com.amap.api.maps.UiSettings;
 import com.amap.api.maps.model.CameraPosition;
 import com.amap.api.maps.model.LatLng;
 import com.amap.api.maps.model.MyLocationStyle;
-
 import java.lang.reflect.Field;
 import java.text.SimpleDateFormat;
 import java.util.Date;
-
-import edu.scse.tracehub.MainActivity;
 import edu.scse.tracehub.R;
+import edu.scse.tracehub.MainActivity;
 
 public class HomeFragment extends Fragment implements AMapLocationListener, LocationSource {
-
+    //侧边栏
+    private ImageView btn_back;
+    private SlideMenu slideMenu;
     private HomeViewModel homeViewModel;
     //地图控件
     private TextureMapView textureMapView;
@@ -73,6 +74,17 @@ public class HomeFragment extends Fragment implements AMapLocationListener, Loca
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
+        //侧边栏定义
+        btn_back = (ImageView)this.getActivity().findViewById(R.id.btn_back);
+        slideMenu = (SlideMenu)this.getActivity().findViewById(R.id.slideMenu);
+
+        //点击返回键打开或关闭侧边栏Menu
+        btn_back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                slideMenu.switchMenu();
+            }
+        });
         textureMapView = (TextureMapView) getView().findViewById(R.id.map);
 
         if (textureMapView != null) {
