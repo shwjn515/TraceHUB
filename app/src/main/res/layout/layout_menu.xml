@@ -2,7 +2,7 @@
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
-    android:background="@color/saswell_pink2"
+    android:background="@color/saswell_pink"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
     <LinearLayout
@@ -14,52 +14,52 @@
             android:id="@+id/back"
             android:layout_width="70dp"
             android:layout_height="50dp"
-            android:background="@color/saswell_pink"
+            android:background="@color/saswell_pink2"
             android:text="返回"/>
 
         <TextView
             style="@style/MenuTabText"
             android:layout_width="match_parent"
             android:layout_height="65dp"
-            android:background="@color/saswell_pink2"
+            android:background="@color/saswell_pink"
             android:drawableStart="@drawable/cat"
             android:text="新闻" />
 
         <TextView
             style="@style/MenuTabText"
             android:layout_height="65dp"
-            android:background="@color/saswell_pink2"
+            android:background="@color/saswell_pink"
             android:drawableStart="@drawable/cat2"
             android:text="订阅" />
 
         <TextView
             style="@style/MenuTabText"
             android:layout_height="65dp"
-            android:background="@color/saswell_pink2"
+            android:background="@color/saswell_pink"
             android:text="跟帖"
             app:drawableLeftCompat="@drawable/icon_com1" />
         <TextView
             style="@style/MenuTabText"
             android:layout_height="65dp"
-            android:background="@color/saswell_pink2"
+            android:background="@color/saswell_pink"
             android:text="图片"
             app:drawableStartCompat="@drawable/icon_com1" />
         <TextView
             style="@style/MenuTabText"
             android:layout_height="65dp"
-            android:background="@color/saswell_pink2"
+            android:background="@color/saswell_pink"
             android:text="话题"
             app:drawableLeftCompat="@drawable/icon_com1" />
         <TextView
             style="@style/MenuTabText"
             android:layout_height="65dp"
-            android:background="@color/saswell_pink2"
+            android:background="@color/saswell_pink"
             android:text="投票"
             app:drawableLeftCompat="@drawable/icon_com1" />
         <TextView
             style="@style/MenuTabText"
             android:layout_height="65dp"
-            android:background="@color/saswell_pink2"
+            android:background="@color/saswell_pink"
             android:text="聚合阅读"
             android:drawableStart="@drawable/icon_com1"/>
     </LinearLayout>

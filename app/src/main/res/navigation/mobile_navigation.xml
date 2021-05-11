@@ -13,6 +13,9 @@
         <action
             android:id="@+id/action_navigation_home_to_list3"
             app:destination="@id/list" />
+        <action
+            android:id="@+id/action_navigation_home_to_photo"
+            app:destination="@id/photo" />
     </fragment>
 
 
@@ -27,16 +30,19 @@
         android:name="edu.scse.tracehub.ui.notifications.NotificationsFragment"
         android:label="@string/title_notifications"
         tools:layout="@layout/navigation_notifications" />
+    <fragment
+        android:id="@+id/photo"
+        android:name="edu.scse.tracehub.ui.home.photo"
+        android:label="photo"
+        tools:layout="@layout/layout_menu"
+        app:defaultNavHost="true"
+        app:navGraph="@navigation/mobile_navigation"/>
 
     <fragment
         android:id="@+id/list"
         android:name="edu.scse.tracehub.ui.home.list"
         android:label="list"
-        tools:layout="@layout/layout_menu"
+        tools:layout="@layout/shangchuan"
         app:defaultNavHost="true"
-        app:navGraph="@navigation/mobile_navigation">
-        <action
-            android:id="@+id/action_list_to_navigation_home"
-            app:destination="@id/navigation_home" />
-    </fragment>
+        app:navGraph="@navigation/mobile_navigation"/>
 </navigation>

@@ -64,18 +64,27 @@ public class HomeFragment extends Fragment implements AMapLocationListener, Loca
     private boolean isFirstLoc = true;
     //列表
     private Button mBtnInputFragment2;
+    private Button mphoto;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
         homeViewModel = new ViewModelProvider(this).get(HomeViewModel.class);
         View root = inflater.inflate(R.layout.navigation_home, container, false);
-//        return root;
+        //列表，上传切换
         final View view = inflater.inflate(R.layout.navigation_home, container, false);;
         mBtnInputFragment2 = view.findViewById(R.id.btn_list);
+        mphoto =  view.findViewById(R.id.btn_shangchuan);
         mBtnInputFragment2.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v) {
-                Navigation.findNavController(getView()).navigate(R.id.action_navigation_home_to_list3);//这个id就是navigation里的action的id
+                Navigation.findNavController(getView()).navigate(R.id.action_navigation_home_to_list3);
+
+            }
+        });
+        mphoto.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v) {
+                Navigation.findNavController(getView()).navigate(R.id.action_navigation_home_to_photo);
 
             }
         });
