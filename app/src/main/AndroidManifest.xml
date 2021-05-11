@@ -36,6 +36,7 @@
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
      <!--相机权限管理-->
     <uses-permission android:name="android.permission.CAMERA"/>
+    <uses-feature android:name="android.hardware.camera" android:required="true" />
 
     <application
         android:allowBackup="true"
@@ -47,7 +48,7 @@
         <meta-data android:name="com.amap.api.v2.apikey" android:value="d0f9e7ce5d3eeb4ae514bbf26eb2bc4c">
             //开发者申请的key
         </meta-data>
-        <service android:name="com.amap.api.location.APSService"></service>
+        <service android:name="com.amap.api.location.APSService" />
         <activity android:name=".LoginActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
