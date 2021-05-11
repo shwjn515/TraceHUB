@@ -6,4 +6,6 @@
     <string name="title_one">出发吧!</string>
     <string name="title_two">TraceHub</string>
     <string name="title_three">我的</string>
+    <string name="tap">Tap the image to open the camera!!</string>
+
 </resources>

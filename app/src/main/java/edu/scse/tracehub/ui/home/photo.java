@@ -9,6 +9,14 @@ import edu.scse.tracehub.R;
 
 import androidx.fragment.app.Fragment;
 import androidx.navigation.Navigation;
+import android.os.Bundle;
+import android.app.Activity;
+import android.content.Intent;
+import android.graphics.Bitmap;
+import android.view.Menu;
+import android.view.View;
+import android.view.View.OnClickListener;
+import android.widget.ImageView;
 
 public class photo extends Fragment {
     private Button mBtnInputFragment3, mBtnBack;
@@ -29,5 +37,4 @@ public class photo extends Fragment {
         });
         return view;
     }
-
 }

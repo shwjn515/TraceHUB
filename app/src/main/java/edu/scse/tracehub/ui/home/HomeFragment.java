@@ -1,5 +1,7 @@
 package edu.scse.tracehub.ui.home;
 
+import android.app.AlarmManager;
+import android.app.PendingIntent;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
@@ -44,7 +46,9 @@ import java.util.List;
 import edu.scse.tracehub.R;
 import edu.scse.tracehub.MainActivity;
 
-public class HomeFragment extends Fragment implements AMapLocationListener, LocationSource {
+import static android.content.Context.ALARM_SERVICE;
+
+public class HomeFragment extends Fragment implements LocationSource {
     private HomeViewModel homeViewModel;
     //地图控件
     private TextureMapView textureMapView;
@@ -62,6 +66,7 @@ public class HomeFragment extends Fragment implements AMapLocationListener, Loca
     private OnLocationChangedListener mListener = null;
     //标识，用于判断是否只显示一次定位信息和用户重新定位
     private boolean isFirstLoc = true;
+    private boolean isTrace = false;
     //列表
     private Button mBtnInputFragment2;
     private Button mphoto;
@@ -137,7 +142,68 @@ public class HomeFragment extends Fragment implements AMapLocationListener, Loca
         //初始化定位
         mLocationClient = new AMapLocationClient(this.getContext());
         //设置定位回调监听
-        mLocationClient.setLocationListener(this);
+        AMapLocationListener aMapLocationListener = new AMapLocationListener() {
+            @Override
+            public void onLocationChanged(AMapLocation aMapLocation) {
+                if (aMapLocation != null) {
+                    if (aMapLocation.getErrorCode() == 0) {
+                        //定位成功回调信息，设置相关消息
+                        aMapLocation.getLocationType();//获取当前定位结果来源，如网络定位结果，详见官方定位类型表
+                        aMapLocation.getLatitude();//获取纬度
+                        aMapLocation.getLongitude();//获取经度
+                        aMapLocation.getAccuracy();//获取精度信息
+                        SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+                        Date date = new Date(aMapLocation.getTime());
+                        df.format(date);//定位时间
+                        aMapLocation.getAddress();//地址，如果option中设置isNeedAddress为false，则没有此结果，网络定位结果中会有地址信息，GPS定位不返回地址信息。
+                        aMapLocation.getCountry();//国家信息
+                        aMapLocation.getProvince();//省信息
+                        aMapLocation.getCity();//城市信息
+                        aMapLocation.getDistrict();//城区信息
+                        aMapLocation.getStreet();//街道信息
+                        aMapLocation.getStreetNum();//街道门牌号信息
+                        aMapLocation.getCityCode();//城市编码
+                        aMapLocation.getAdCode();//地区编码
+
+                        // 如果不设置标志位，此时再拖动地图时，它会不断将地图移动到当前的位置
+                        if (isFirstLoc) {
+                            //设置缩放级别
+                            aMap.moveCamera(CameraUpdateFactory.zoomTo(17));
+                            //将地图移动到定位点
+                            aMap.moveCamera(CameraUpdateFactory.changeLatLng(new LatLng(aMapLocation.getLatitude(), aMapLocation.getLongitude())));
+                            //添加图钉
+                            //  aMap.addMarker(getMarkerOptions(amapLocation));
+                            //获取定位信息
+                            StringBuffer buffer = new StringBuffer();
+                            buffer.append(aMapLocation.getCountry() + ""
+                                    + aMapLocation.getProvince() + ""
+                                    + aMapLocation.getCity() + ""
+                                    + aMapLocation.getProvince() + ""
+                                    + aMapLocation.getDistrict() + ""
+                                    + aMapLocation.getStreet() + ""
+                                    + aMapLocation.getStreetNum());
+                            Toast.makeText(getContext(), buffer.toString(), Toast.LENGTH_LONG).show();
+                            isFirstLoc = false;
+                        }
+                        //点击定位按钮 能够将地图的中心移动到定位点
+                        mListener.onLocationChanged(aMapLocation);
+                        //
+                        latLngs.add(new LatLng(aMapLocation.getLatitude(),aMapLocation.getLongitude()));
+                        Polyline line =aMap.addPolyline(new PolylineOptions().
+                                addAll(latLngs).width(10).color(Color.argb(255, 1, 1, 1)));
+                        line.setVisible(true);
+
+                    } else {
+                        //显示错误信息ErrCode是错误码，errInfo是错误信息，详见错误码表。
+                        Log.e("AmapError", "location Error, ErrCode:"
+                                + aMapLocation.getErrorCode() + ", errInfo:"
+                                + aMapLocation.getErrorInfo());
+                        Toast.makeText(getContext(), "定位失败", Toast.LENGTH_LONG).show();
+                    }
+                }
+            }
+        };
+        mLocationClient.setLocationListener(aMapLocationListener);
         //初始化定位参数
         mLocationOption = new AMapLocationClientOption();
         //设置定位模式为Hight_Accuracy高精度模式，Battery_Saving为低功耗模式，Device_Sensors是仅设备模式
@@ -157,67 +223,7 @@ public class HomeFragment extends Fragment implements AMapLocationListener, Loca
         //启动定位
         mLocationClient.startLocation();
     }
-    @Override
-    public void onLocationChanged(AMapLocation aMapLocation) {
-        if (aMapLocation != null) {
-            if (aMapLocation.getErrorCode() == 0) {
-                //定位成功回调信息，设置相关消息
-                aMapLocation.getLocationType();//获取当前定位结果来源，如网络定位结果，详见官方定位类型表
-                aMapLocation.getLatitude();//获取纬度
-                aMapLocation.getLongitude();//获取经度
-                aMapLocation.getAccuracy();//获取精度信息
-                SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-                Date date = new Date(aMapLocation.getTime());
-                df.format(date);//定位时间
-                aMapLocation.getAddress();//地址，如果option中设置isNeedAddress为false，则没有此结果，网络定位结果中会有地址信息，GPS定位不返回地址信息。
-                aMapLocation.getCountry();//国家信息
-                aMapLocation.getProvince();//省信息
-                aMapLocation.getCity();//城市信息
-                aMapLocation.getDistrict();//城区信息
-                aMapLocation.getStreet();//街道信息
-                aMapLocation.getStreetNum();//街道门牌号信息
-                aMapLocation.getCityCode();//城市编码
-                aMapLocation.getAdCode();//地区编码
 
-                // 如果不设置标志位，此时再拖动地图时，它会不断将地图移动到当前的位置
-                if (isFirstLoc) {
-                    //设置缩放级别
-                    aMap.moveCamera(CameraUpdateFactory.zoomTo(17));
-                    //将地图移动到定位点
-                    aMap.moveCamera(CameraUpdateFactory.changeLatLng(new LatLng(aMapLocation.getLatitude(), aMapLocation.getLongitude())));
-                    //点击定位按钮 能够将地图的中心移动到定位点
-                    mListener.onLocationChanged(aMapLocation);
-
-                    //添加图钉
-                    //  aMap.addMarker(getMarkerOptions(amapLocation));
-                    //获取定位信息
-                    StringBuffer buffer = new StringBuffer();
-                    buffer.append(aMapLocation.getCountry() + ""
-                            + aMapLocation.getProvince() + ""
-                            + aMapLocation.getCity() + ""
-                            + aMapLocation.getProvince() + ""
-                            + aMapLocation.getDistrict() + ""
-                            + aMapLocation.getStreet() + ""
-                            + aMapLocation.getStreetNum());
-                    Toast.makeText(this.getContext(), buffer.toString(), Toast.LENGTH_LONG).show();
-                    isFirstLoc = false;
-                }
-
-
-                latLngs.add(new LatLng(aMapLocation.getLatitude(),aMapLocation.getLongitude()));
-                Polyline line =aMap.addPolyline(new PolylineOptions().
-                        addAll(latLngs).width(10).color(Color.argb(255, 1, 1, 1)));
-                line.setVisible(true);
-
-            } else {
-                //显示错误信息ErrCode是错误码，errInfo是错误信息，详见错误码表。
-                Log.e("AmapError", "location Error, ErrCode:"
-                        + aMapLocation.getErrorCode() + ", errInfo:"
-                        + aMapLocation.getErrorInfo());
-                Toast.makeText(this.getContext(), "定位失败", Toast.LENGTH_LONG).show();
-            }
-        }
-    }
     @Override
     public void activate(OnLocationChangedListener onLocationChangedListener) {
         mListener = onLocationChangedListener;
