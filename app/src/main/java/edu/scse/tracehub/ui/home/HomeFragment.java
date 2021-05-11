@@ -1,11 +1,13 @@
 package edu.scse.tracehub.ui.home;
 
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -35,10 +37,8 @@ import edu.scse.tracehub.R;
 import edu.scse.tracehub.MainActivity;
 
 public class HomeFragment extends Fragment implements AMapLocationListener, LocationSource {
-    //侧边栏
-    private ImageView btn_back;
-    private SlideMenu slideMenu;
     private HomeViewModel homeViewModel;
+    private Button mbtn_list;
     //地图控件
     private TextureMapView textureMapView;
     private AMap aMap;
@@ -56,8 +56,7 @@ public class HomeFragment extends Fragment implements AMapLocationListener, Loca
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
-        homeViewModel =
-                new ViewModelProvider(this).get(HomeViewModel.class);
+        homeViewModel = new ViewModelProvider(this).get(HomeViewModel.class);
         View root = inflater.inflate(R.layout.navigation_home, container, false);
         return root;
     }
@@ -74,19 +73,18 @@ public class HomeFragment extends Fragment implements AMapLocationListener, Loca
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-        //侧边栏定义
-        btn_back = (ImageView)this.getActivity().findViewById(R.id.btn_back);
-        slideMenu = (SlideMenu)this.getActivity().findViewById(R.id.slideMenu);
-
-        //点击返回键打开或关闭侧边栏Menu
-        btn_back.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                slideMenu.switchMenu();
-            }
-        });
+//        //设置列表按钮点击事件
+//        mbtn_list = getActivity().findViewById(R.id.btn_list);
+//        mbtn_list.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                //跳转到菜单页面
+//                Intent intent = new Intent(edu.scse.tracehub.ui.home.HomeFragment.this, edu.scse.tracehub.MainActivity.class);
+//                startActivity(intent);
+//            }
+//        });
+        //地图
         textureMapView = (TextureMapView) getView().findViewById(R.id.map);
-
         if (textureMapView != null) {
             textureMapView.onCreate(savedInstanceState);
             aMap = textureMapView.getMap();

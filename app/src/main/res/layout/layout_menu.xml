@@ -12,7 +12,7 @@
         <TextView
             style="@style/MenuTabText"
             android:layout_width="match_parent"
-            android:layout_height="65dp"
+            android:layout_height="50dp"
             android:background="@color/saswell_pink2"
             android:text="" />
         <TextView
@@ -20,14 +20,14 @@
             android:layout_width="match_parent"
             android:layout_height="65dp"
             android:background="@color/saswell_pink2"
-            android:drawableStart="@drawable/icon_com1"
+            android:drawableStart="@drawable/cat"
             android:text="新闻" />
 
         <TextView
             style="@style/MenuTabText"
             android:layout_height="65dp"
             android:background="@color/saswell_pink2"
-            android:drawableStart="@drawable/icon_com1"
+            android:drawableStart="@drawable/cat2"
             android:text="订阅" />
 
         <TextView

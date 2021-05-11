@@ -13,7 +13,7 @@
         android:layout_height="50dp"
         android:background="@color/saswell_pink"
         android:gravity="center"
-        android:text="  记录生活记录你！"
+        android:text="记录生活记录你!"
         android:textColor="@color/saswell_white"
         android:textSize="20sp"
         android:textStyle="bold"
@@ -26,15 +26,24 @@
         app:layout_constraintRight_toRightOf="parent"
         android:layout_marginRight="0dp"
         tools:ignore="MissingConstraints" />
+    <Button
+        android:id="@+id/btn_list"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:background="@drawable/th_list"
+        app:layout_constraintLeft_toLeftOf="parent"
+        android:layout_marginRight="0dp"
+        tools:ignore="MissingConstraints" />
 
     <ToggleButton
-        android:id="@+id/toggleButton"
+        android:id="@+id/togglebutton"
         android:layout_width="100dp"
         android:layout_height="61.8dp"
         android:layout_gravity="center_horizontal"
         android:background="@drawable/togglebutton"
         android:textOff=""
         android:textOn=""
+        android:visibility="visible"
         app:layout_constraintBottom_toBottomOf="@+id/map"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
@@ -50,15 +59,6 @@
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent" >
     </com.amap.api.maps.TextureMapView>
-    <edu.scse.tracehub.ui.home.SlideMenu
-        android:id="@+id/slideMenu"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
-        <!--菜单界面的布局-->
-        <include layout="@layout/layout_menu"/>
-        <!--主界面的布局-->
-        <include layout="@layout/layout_main"/>
-    </edu.scse.tracehub.ui.home.SlideMenu>
 
 
 
