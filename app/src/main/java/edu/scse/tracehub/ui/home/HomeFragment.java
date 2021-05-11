@@ -14,9 +14,11 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
+import androidx.navigation.Navigation;
 
 import com.amap.api.location.AMapLocation;
 import com.amap.api.location.AMapLocationClient;
@@ -30,20 +32,27 @@ import com.amap.api.maps.UiSettings;
 import com.amap.api.maps.model.CameraPosition;
 import com.amap.api.maps.model.LatLng;
 import com.amap.api.maps.model.MyLocationStyle;
+import com.amap.api.maps.model.Polyline;
+import com.amap.api.maps.model.PolylineOptions;
+
 import java.lang.reflect.Field;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
+
 import edu.scse.tracehub.R;
 import edu.scse.tracehub.MainActivity;
 
 public class HomeFragment extends Fragment implements AMapLocationListener, LocationSource {
     private HomeViewModel homeViewModel;
-    private Button mbtn_list;
     //地图控件
     private TextureMapView textureMapView;
     private AMap aMap;
     public static final LatLng TIANJIN = new LatLng(39.13,117.2);// 天津市经纬度
     protected static CameraPosition cameraPosition;
+    //画轨迹
+    List<LatLng> latLngs = new ArrayList<LatLng>();
 
     //声明AMapLocationClient类对象，定位发起端
     private AMapLocationClient mLocationClient = null;
@@ -53,12 +62,24 @@ public class HomeFragment extends Fragment implements AMapLocationListener, Loca
     private OnLocationChangedListener mListener = null;
     //标识，用于判断是否只显示一次定位信息和用户重新定位
     private boolean isFirstLoc = true;
+    //列表
+    private Button mBtnInputFragment2;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
         homeViewModel = new ViewModelProvider(this).get(HomeViewModel.class);
         View root = inflater.inflate(R.layout.navigation_home, container, false);
-        return root;
+//        return root;
+        final View view = inflater.inflate(R.layout.navigation_home, container, false);;
+        mBtnInputFragment2 = view.findViewById(R.id.btn_list);
+        mBtnInputFragment2.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v) {
+                Navigation.findNavController(getView()).navigate(R.id.action_navigation_home_to_list3);//这个id就是navigation里的action的id
+
+            }
+        });
+        return view;
     }
     LatLng getTarget() {
         return TIANJIN;
@@ -73,16 +94,6 @@ public class HomeFragment extends Fragment implements AMapLocationListener, Loca
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-//        //设置列表按钮点击事件
-//        mbtn_list = getActivity().findViewById(R.id.btn_list);
-//        mbtn_list.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                //跳转到菜单页面
-//                Intent intent = new Intent(edu.scse.tracehub.ui.home.HomeFragment.this, edu.scse.tracehub.MainActivity.class);
-//                startActivity(intent);
-//            }
-//        });
         //地图
         textureMapView = (TextureMapView) getView().findViewById(R.id.map);
         if (textureMapView != null) {
@@ -109,12 +120,10 @@ public class HomeFragment extends Fragment implements AMapLocationListener, Loca
         MyLocationStyle myLocationStyle = new MyLocationStyle();//初始化定位蓝点样式类
         myLocationStyle.strokeColor(Color.argb(0, 0, 0, 0));// 设置圆形的边框颜色 
         myLocationStyle.radiusFillColor(Color.argb(0, 0, 0, 0));// 设置圆形的填充颜色
-
         aMap.setMyLocationStyle(myLocationStyle);
         //开始定位
         location();
     }
-
     private void location() {
         //初始化定位
         mLocationClient = new AMapLocationClient(this.getContext());
@@ -185,6 +194,11 @@ public class HomeFragment extends Fragment implements AMapLocationListener, Loca
                     isFirstLoc = false;
                 }
 
+
+                latLngs.add(new LatLng(aMapLocation.getLatitude(),aMapLocation.getLongitude()));
+                Polyline line =aMap.addPolyline(new PolylineOptions().
+                        addAll(latLngs).width(10).color(Color.argb(255, 1, 1, 1)));
+                line.setVisible(true);
 
             } else {
                 //显示错误信息ErrCode是错误码，errInfo是错误信息，详见错误码表。
