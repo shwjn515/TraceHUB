@@ -89,8 +89,8 @@ public class HomeFragment extends Fragment implements LocationSource {
         mphoto.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v) {
-                Navigation.findNavController(getView()).navigate(R.id.action_navigation_home_to_photo);
-
+                Intent intent = new Intent(getActivity(),photo.class);
+                startActivity(intent);
             }
         });
         return view;
