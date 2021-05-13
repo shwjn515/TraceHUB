@@ -25,8 +25,8 @@
         android:layout_height="match_parent"
         app:defaultNavHost="true"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
-        android:layout_marginBottom="60dp"
-        app:navGraph="@navigation/mobile_navigation" />
+        app:navGraph="@navigation/mobile_navigation"
+        tools:layout_editor_absoluteY="-45dp" />
 </androidx.constraintlayout.widget.ConstraintLayout>

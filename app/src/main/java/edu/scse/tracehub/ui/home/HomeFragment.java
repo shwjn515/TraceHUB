@@ -1,7 +1,5 @@
 package edu.scse.tracehub.ui.home;
 
-import android.app.AlarmManager;
-import android.app.PendingIntent;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
@@ -10,15 +8,11 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.ImageView;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
-import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.Navigation;
 
@@ -37,16 +31,13 @@ import com.amap.api.maps.model.MyLocationStyle;
 import com.amap.api.maps.model.Polyline;
 import com.amap.api.maps.model.PolylineOptions;
 
-import java.lang.reflect.Field;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
 import edu.scse.tracehub.R;
-import edu.scse.tracehub.MainActivity;
-
-import static android.content.Context.ALARM_SERVICE;
+import edu.scse.tracehub.util.PathSmoothTool;
 
 public class HomeFragment extends Fragment implements LocationSource {
     private HomeViewModel homeViewModel;
@@ -55,8 +46,8 @@ public class HomeFragment extends Fragment implements LocationSource {
     private AMap aMap;
     public static final LatLng TIANJIN = new LatLng(39.13,117.2);// 天津市经纬度
     protected static CameraPosition cameraPosition;
-    //画轨迹
-    List<LatLng> latLngs = new ArrayList<LatLng>();
+    //存储轨迹
+    public List<LatLng> latLngs = new ArrayList<LatLng>();
 
     //声明AMapLocationClient类对象，定位发起端
     private AMapLocationClient mLocationClient = null;
@@ -137,6 +128,15 @@ public class HomeFragment extends Fragment implements LocationSource {
         aMap.setMyLocationStyle(myLocationStyle);
         //开始定位
         location();
+
+        Button button = (Button) getActivity().findViewById(R.id.togglebutton);
+        //开始结束按钮监听器
+        button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                isTrace=!isTrace;
+            }
+        });
     }
     private void location() {
         //初始化定位
@@ -187,12 +187,17 @@ public class HomeFragment extends Fragment implements LocationSource {
                         }
                         //点击定位按钮 能够将地图的中心移动到定位点
                         mListener.onLocationChanged(aMapLocation);
-                        //
-                        latLngs.add(new LatLng(aMapLocation.getLatitude(),aMapLocation.getLongitude()));
-                        Polyline line =aMap.addPolyline(new PolylineOptions().
-                                addAll(latLngs).width(10).color(Color.argb(255, 1, 1, 1)));
-                        line.setVisible(true);
-
+                        //画轨迹
+                        if (isTrace) {
+                            latLngs.add(new LatLng(aMapLocation.getLatitude(),aMapLocation.getLongitude()));
+                            PathSmoothTool mpathSmoothTool = new PathSmoothTool();
+                            mpathSmoothTool.setIntensity(4);
+                            List<LatLng> pathoptimizeList = mpathSmoothTool.pathOptimize(latLngs);
+                            Polyline line = aMap.addPolyline(new PolylineOptions().
+                                    addAll(pathoptimizeList).width(10).color(Color.argb(255, 1, 1, 1)));
+                            line.setColor(0xFFe495c7);
+                            line.setVisible(true);
+                        }
                     } else {
                         //显示错误信息ErrCode是错误码，errInfo是错误信息，详见错误码表。
                         Log.e("AmapError", "location Error, ErrCode:"
