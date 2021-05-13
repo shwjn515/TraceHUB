@@ -44,7 +44,6 @@ public class photo extends AppCompatActivity {
      * 用于保存拍照图片的uri
      */
     private Uri mCameraUri;
-
     /**
      * 用于保存图片的文件路径，Android 10以下使用图片路径访问图片
      */
@@ -67,6 +66,17 @@ public class photo extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 checkPermissionAndCamera();
+            }
+        });
+        //返回
+        back= findViewById(R.id.back2);
+        //相机
+        back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(photo.this, edu.scse.tracehub.MainActivity.class);
+                startActivity(intent);
+                photo.this.finish();
             }
         });
     }
@@ -168,7 +178,7 @@ public class photo extends AppCompatActivity {
     }
 
     /**
-     * 创建图片地址uri,用于保存拍照后的照片 Android 10以后使用这种方法
+     * 创建图片地址uri,用于保存拍照后的照片
      *
      * @return 图片的uri
      */
