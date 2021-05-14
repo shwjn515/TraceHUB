@@ -47,6 +47,9 @@ dependencies {
     implementation 'com.amap.api:location:5.3.1'
     //搜索功能
     implementation 'com.amap.api:search:7.9.0'
+    // okHttps
+    implementation 'com.ejlchina:okhttps:3.0.2'
+    implementation 'com.ejlchina:okhttps-jackson:3.0.2'
 
 
 }

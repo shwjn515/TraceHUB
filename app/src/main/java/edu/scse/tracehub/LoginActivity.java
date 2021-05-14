@@ -5,6 +5,8 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
+
 import androidx.appcompat.app.AppCompatActivity;
 public class LoginActivity extends AppCompatActivity {
 
@@ -14,18 +16,22 @@ public class LoginActivity extends AppCompatActivity {
     private EditText eT_password;
     private Button mBtn_yincang;
     private Button mBtn_zhuce;
+    boolean login = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.login);
-
+        TextView username = (TextView) findViewById(R.id.usernameText);
+        TextView password = (TextView) findViewById(R.id.pwText);
         //设置登录按钮点击事件
         mBtn_denglu = findViewById(R.id.btn_denglu);
         mBtn_denglu.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 //跳转到菜单页面
+                if(username.getText().equals("test")) login = true;
+
                 Intent intent = new Intent(edu.scse.tracehub.LoginActivity.this, edu.scse.tracehub.MainActivity.class);
                 startActivity(intent);
             }

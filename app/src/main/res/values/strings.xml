@@ -7,5 +7,5 @@
     <string name="title_two">TraceHub</string>
     <string name="title_three">我的</string>
     <string name="tap">Tap the image to open the camera!!</string>
-
+    <string name="url">http://117.78.3.88:8080</string>
 </resources>

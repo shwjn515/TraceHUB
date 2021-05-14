@@ -74,7 +74,7 @@
                 android:orientation="horizontal">
 
                 <EditText
-                    android:id="@+id/et_1"
+                    android:id="@+id/usernameText"
                     android:layout_width="fill_parent"
                     android:layout_height="fill_parent"
                     android:background="@drawable/btu_press"
@@ -93,7 +93,7 @@
                     android:layout_height="13dp"
                     android:layout_gravity="center_vertical"
                     android:layout_marginLeft="-40dp"
-                    android:layout_toRightOf="@+id/et_1"
+                    android:layout_toRightOf="@+id/usernameText"
                     android:background="@drawable/icon_delete" />
 
             </LinearLayout>
@@ -110,7 +110,7 @@
                 android:orientation="horizontal">
 
                 <EditText
-                    android:id="@+id/et_2"
+                    android:id="@+id/pwText"
                     android:layout_width="fill_parent"
                     android:layout_height="fill_parent"
                     android:background="@drawable/btu_press"
@@ -130,7 +130,7 @@
                     android:layout_height="23dp"
                     android:layout_gravity="center_vertical"
                     android:layout_marginLeft="-40dp"
-                    android:layout_toRightOf="@+id/et_2"
+                    android:layout_toRightOf="@+id/pwText"
                     android:background="@drawable/icon_yincang" />
 
             </LinearLayout>
@@ -139,7 +139,7 @@
                 android:id="@+id/btn_1"
                 android:layout_width="wrap_content"
                 android:layout_height="0dp"
-                android:layout_below="@id/et_2"
+                android:layout_below="@id/pwText"
                 android:layout_gravity="center_horizontal"
                 android:layout_weight="1.2"
                 android:background="#00FDFCFC"
