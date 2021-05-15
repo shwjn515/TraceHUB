@@ -34,7 +34,7 @@ public class photo extends AppCompatActivity {
 
     private ImageView ivCamera;
     private ImageView ivPhoto;
-    private Button back;
+    private Button back,mbaocun;
 
     // 拍照的requestCode
     private static final int CAMERA_REQUEST_CODE = 0x00000010;
@@ -70,7 +70,6 @@ public class photo extends AppCompatActivity {
         });
         //返回
         back= findViewById(R.id.back2);
-        //相机
         back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -79,6 +78,17 @@ public class photo extends AppCompatActivity {
                 photo.this.finish();
             }
         });
+        //保存
+        mbaocun= findViewById(R.id.baocun);
+        mbaocun.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(photo.this, edu.scse.tracehub.MainActivity.class);
+                startActivity(intent);
+                photo.this.finish();
+            }
+        });
+
     }
 
     /**

@@ -9,7 +9,17 @@
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin">
 
-
+    <TextView
+        android:id="@+id/textView3"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="@color/saswell_pink"
+        android:gravity="center"
+        android:text="快记录一下吧"
+        android:textColor="@color/saswell_white"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        tools:ignore="MissingConstraints" />
     <Button
         android:id="@+id/back2"
         android:layout_width="70dp"
@@ -18,8 +28,32 @@
         android:layout_alignParentTop="true"
         android:layout_marginTop="0dp"
         android:background="@color/saswell_pink2"
-        android:text="返回" />
+        android:text="返回"
+        android:textColor="@color/saswell_white"/>
 
+
+    <Button
+        android:id="@+id/baocun"
+        android:layout_width="70dp"
+        android:layout_height="50dp"
+        android:layout_alignRight="@id/textView3"
+        android:background="@color/saswell_pink2"
+        android:text="报存"
+        android:textColor="@color/saswell_white" />
+
+    <EditText
+        android:id="@+id/shuru"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginStart="0dp"
+        android:layout_marginTop="60dp"
+        android:layout_marginEnd="0dp"
+        android:background="@drawable/biankuang"
+        android:text="  描述一下图片吧"
+        android:textColor="@color/saswell_white" />
 
     <ImageView
         android:id="@+id/ivCamera"
@@ -29,19 +63,19 @@
         android:layout_marginTop="500dp"
         android:background="@drawable/photo"/>
 
+
     <ImageView
         android:id="@+id/ivPhoto"
-        android:layout_width="341dp"
-        android:layout_height="370dp"
+        android:layout_width="395dp"
+        android:layout_height="226dp"
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
         android:layout_alignParentEnd="true"
         android:layout_alignParentBottom="true"
-        android:layout_marginStart="16dp"
-        android:layout_marginLeft="34dp"
-        android:layout_marginTop="74dp"
-        android:layout_marginEnd="16dp"
-        android:layout_marginBottom="271dp" />
-
-
+        android:layout_marginStart="0dp"
+        android:layout_marginLeft="45dp"
+        android:layout_marginTop="219dp"
+        android:layout_marginEnd="0dp"
+        android:layout_marginBottom="271dp"
+        android:background="@drawable/biankuang" />
 </RelativeLayout>
