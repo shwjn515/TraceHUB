@@ -1,6 +1,7 @@
 package edu.scse.tracehub.ui.dashboard;
 
 import android.content.Context;
+import android.graphics.Bitmap;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,30 +17,33 @@ import java.util.List;
 
 import edu.scse.tracehub.R;
 
-public class CatAdapter extends RecyclerView.Adapter<CatAdapter.ViewHolder> {
+public class
+ActivesAdapter extends RecyclerView.Adapter<ActivesAdapter.ViewHolder> {
     private Context context;
-    private List<Cat> cats = new ArrayList<>();
+    private List<Active> actives = new ArrayList<>();
     private OnItemClickListener onItemClickListener;
+    private List<Bitmap> imgs = new ArrayList<>();
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
         CardView cardView;
         ImageView image;
-        TextView type;
+        TextView text;
 
         public ViewHolder(View itemView) {
             super(itemView);
             cardView = (CardView) itemView;
             image = (ImageView) itemView.findViewById(R.id.cat_image);
-            type = (TextView) itemView.findViewById(R.id.cat_type);
+            text = (TextView) itemView.findViewById(R.id.cat_type);
         }
         public CardView getCardView() {
             return cardView;
         }
     }
     //放入项目的数据集
-    public CatAdapter(Context context, List<Cat> cats) {
+    public ActivesAdapter(Context context, List<Active> actives, List<Bitmap> imgs) {
         this.context = context;
-        this.cats = cats;
+        this.actives = actives;
+        this.imgs = imgs;
     }
     //create new view
     @Override
@@ -53,9 +57,10 @@ public class CatAdapter extends RecyclerView.Adapter<CatAdapter.ViewHolder> {
     //布置item内容
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
-        Cat cat = cats.get(position);
-        holder.type.setText(cat.getType());
-        holder.image.setImageResource(cat.getImgId());
+        Active active = actives.get(position);
+        Bitmap img = imgs.get(position);
+        holder.text.setText(active.getText());
+        holder.image.setImageBitmap(img);
         if(null != onItemClickListener)
         {
             holder.image.setOnClickListener(new View.OnClickListener() {
@@ -79,7 +84,7 @@ public class CatAdapter extends RecyclerView.Adapter<CatAdapter.ViewHolder> {
     }
     @Override
     public int getItemCount() {
-        return cats.size();
+        return actives.size();
     }
 
 
