@@ -18,10 +18,11 @@ import edu.scse.tracehub.R;
 
 
 public class DashboardFragment extends Fragment {
-    private final Cat[] cats = {new Cat("快乐",R.drawable.t2),
-            new Cat("我很开心",R.drawable.t1),
+    private final Cat[] cats = {new Cat("今天我非常的快乐",R.drawable.t2),
+            new Cat("我很开心" +
+                    "",R.drawable.t1),
             new Cat("今天去哪玩",R.drawable.t3),
-            new Cat("一起出去玩吧",R.drawable.t4),
+            new Cat("一起出去玩吧哈哈哈哈哈哈",R.drawable.t4),
             new Cat("蠢猫",R.drawable.cat),
             new Cat("真漂亮啊",R.drawable.t5),
             new Cat("再见",R.drawable.t6),
@@ -53,7 +54,7 @@ public class DashboardFragment extends Fragment {
         adapter.setOnItemClickListener(new CatAdapter.OnItemClickListener() {
             @Override
             public void onItemClick(View view, int position) {
-                Toast.makeText(DashboardFragment.this.getActivity(),"这是条"+catList.get(position).getType(),Toast.LENGTH_LONG).show();
+
             }
         });
         recyclerView.setAdapter(adapter);
