@@ -12,6 +12,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import com.ejlchina.okhttps.HTTP;
 import com.ejlchina.okhttps.JacksonMsgConvertor;
@@ -35,8 +36,9 @@ import okhttp3.ResponseBody;
  * 1.向/actives端口申请动态列表,服务端返回动态(用户,id,内容)和预览图id(id)
  * 2.前端保存动态列表依据图id向/img获取图
  *
+ *
  * 详细动态
- * 1.依据动态id向/imgs申请需要的图id列表
+ * 1.依据动态id向/imgs申请需要的图id列表 List<String>
  * 2.向/img获取所有图
  * 3.布置到页面上
  */
@@ -67,7 +69,9 @@ public class DashboardFragment extends Fragment {
         adapter.setOnItemClickListener(new ActivesAdapter.OnItemClickListener() {
             @Override
             public void onItemClick(View view, int position) {
-
+                //根据position获取相应的active id,然后将id传入详情页
+                String active_id = activeList.get(position).getA_id();
+                Toast.makeText(getContext(),"动态编号:" + active_id, Toast.LENGTH_LONG).show();
             }
         });
         recyclerView.setAdapter(adapter);
@@ -100,6 +104,7 @@ public class DashboardFragment extends Fragment {
                         .getResult()
                         .getBody()
                         .toBean(new HashMap<String,Object>().getClass());
+        //动态仍然是一个键值对数组
         ArrayList<HashMap<String,Object>> actives = (ArrayList<HashMap<String,Object>>) ret.get("actives");
         for (int i = 0; i < actives.size(); i++)
         {
@@ -109,6 +114,9 @@ public class DashboardFragment extends Fragment {
                 (String) active.get("text")));
         }
         ArrayList<HashMap<String,Object>> img_id = (ArrayList<HashMap<String,Object>>) ret.get("foreview");
+        //请求图片
+        //请求详细图片也是类似的,只是迭代的列表不一样,这个迭代预览列表,那个迭代详细列表
+        //详细列表是List<String>
         for (int i = 0; i < img_id.size();i++)
         {
         String img = (String) img_id.get(i).get("pid");
@@ -120,6 +128,7 @@ public class DashboardFragment extends Fragment {
                         .getResult()
                         .getBody()
                         .toBytes();
+        //接收二进制字符流,转换为位图
         Bitmap bitmap = BitmapFactory.decodeByteArray(bit,0,bit.length);
         imgs.add(bitmap);
         }
