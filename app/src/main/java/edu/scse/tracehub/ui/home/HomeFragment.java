@@ -1,8 +1,16 @@
 package edu.scse.tracehub.ui.home;
 
+import android.app.AlertDialog;
 import android.content.Intent;
+import android.content.res.Resources;
+import android.content.res.TypedArray;
+import android.graphics.Bitmap;
+import android.graphics.Canvas;
 import android.graphics.Color;
+import android.graphics.Rect;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
+import android.os.Environment;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -31,10 +39,15 @@ import com.amap.api.maps.model.MyLocationStyle;
 import com.amap.api.maps.model.Polyline;
 import com.amap.api.maps.model.PolylineOptions;
 
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.Locale;
 
 import edu.scse.tracehub.R;
 import edu.scse.tracehub.util.PathSmoothTool;
@@ -135,6 +148,59 @@ public class HomeFragment extends Fragment implements LocationSource {
             @Override
             public void onClick(View v) {
                 isTrace=!isTrace;
+                //点击stop进行截屏
+                if(isTrace==false)
+                {
+                    new AlertDialog.Builder(getActivity())
+                            .setTitle("消息")
+                            .setMessage("记录轨迹结束，已为您自动截屏")
+                            .setPositiveButton("确定",null)
+                            .show();
+                    aMap.getMapScreenShot(new AMap.OnMapScreenShotListener() {
+                        @Override
+                        public void onMapScreenShot(Bitmap bitmap) {
+                            SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMddHHmmss");
+                            try {
+                                // 保存在SD卡根目录下，图片为png格式。
+                                //目录为手机SD/Pictures/Screenshots/test_20210514xxxx.png
+                                FileOutputStream fos = new FileOutputStream(
+                                        Environment.getExternalStorageDirectory() + "/Pictures/Screenshots/test_"
+                                                + sdf.format(new Date()) + ".png");
+                                boolean ifSuccess = bitmap.compress(Bitmap.CompressFormat.PNG, 100, fos);
+                                try {
+                                    fos.flush();
+                                } catch (IOException e) {
+                                    e.printStackTrace();
+                                }
+                                try {
+                                    fos.close();
+                                } catch (IOException e) {
+                                    e.printStackTrace();
+                                }
+                                if (ifSuccess)
+                                    Toast.makeText(getContext(), "截屏成功", Toast.LENGTH_SHORT).show();
+                                else {
+                                    Toast.makeText(getContext(), "截屏失败", Toast.LENGTH_SHORT).show();
+                                }
+                            } catch (FileNotFoundException e) {
+                                e.printStackTrace();
+                            }
+                        }
+
+                        @Override
+                        public void onMapScreenShot(Bitmap bitmap, int i) {
+
+                        }
+
+                    });
+                }else{
+                    new AlertDialog.Builder(getActivity())
+                            .setTitle("消息")
+                            .setMessage("记录轨迹开始")
+                            .setPositiveButton("确定",null)
+                            .show();
+                }
+
             }
         });
     }
