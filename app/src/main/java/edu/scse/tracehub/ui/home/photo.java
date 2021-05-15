@@ -80,6 +80,7 @@ public class photo extends AppCompatActivity {
             }
         });
     }
+    
 
     /**
      * 检查权限并拍照。

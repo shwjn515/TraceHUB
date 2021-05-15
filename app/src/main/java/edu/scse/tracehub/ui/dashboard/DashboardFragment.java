@@ -6,15 +6,18 @@ import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.List;
 import edu.scse.tracehub.R;
+import edu.scse.tracehub.ui.home.photo;
 
 
 public class DashboardFragment extends Fragment {
@@ -23,13 +26,23 @@ public class DashboardFragment extends Fragment {
     //列表需要的数据表
     private List<Cat> catList = new ArrayList<>();
     private DashboardViewModel dashboardViewModel;
+    private Button shangchuan2;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
         dashboardViewModel =
                 new ViewModelProvider(this).get(DashboardViewModel.class);
         View root = inflater.inflate(R.layout.navigation_dashboard, container, false);
-        return root;
+        final View view = inflater.inflate(R.layout.navigation_dashboard, container, false);;
+        shangchuan2 =  view.findViewById(R.id.btn_shangchuan2);
+        shangchuan2.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getActivity(), edu.scse.tracehub.ui.upload.mainup.class);
+                startActivity(intent);
+            }
+        });
+        return view;
     }
 
     @Override
