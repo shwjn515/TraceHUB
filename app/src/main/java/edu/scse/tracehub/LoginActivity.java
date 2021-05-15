@@ -60,31 +60,38 @@ public class LoginActivity extends AppCompatActivity {
                 String name = username.getText().toString();
                 String pw = password.getText().toString();
                 Intent intent = new Intent(edu.scse.tracehub.LoginActivity.this, edu.scse.tracehub.MainActivity.class);
-                if(name.equals("test")) startActivity(intent);
-                User user = new User(name,pw);
-                HashMap<String,String> ret =
-                http.async("/login")
-                        .bind(getLifecycle())
-                        .bodyType(OkHttps.JSON)
-                        .setBodyPara(user)
-                        .post()
-                        .getResult()
-                        .getBody()
-                        .toBean(new HashMap<String,String>().getClass());
-                String msg = ret.get("msg");
-                if(msg.equals("wrong"))
+                boolean test =
+                name.equals("test");
+                if(test)
                 {
-                    msg = "用户密码错误";
-                    login = false;
+                    startActivity(intent);
                 }
-                else
-                {
-                    msg = "登录成功";
-                    login =true;
+                else {
+                    User user = new User(name,pw);
+                    HashMap<String,String> ret =
+                            http.async("/login")
+                                    .bind(getLifecycle())
+                                    .bodyType(OkHttps.JSON)
+                                    .setBodyPara(user)
+                                    .post()
+                                    .getResult()
+                                    .getBody()
+                                    .toBean(new HashMap<String,String>().getClass());
+                    String msg = ret.get("msg");
+                    if(msg.equals("wrong"))
+                    {
+                        msg = "用户密码错误";
+                        login = false;
+                    }
+                    else
+                    {
+                        msg = "登录成功";
+                        login =true;
+                    }
+                    Toast.makeText(getApplicationContext(),msg,Toast.LENGTH_LONG).show();
+                    intent.putExtra("name",name);
+                    if(login)    startActivity(intent);
                 }
-                Toast.makeText(getApplicationContext(),msg,Toast.LENGTH_LONG).show();
-                intent.putExtra("name",name);
-                if(login)    startActivity(intent);
             }
         });
         //设置注册按钮点击事件
