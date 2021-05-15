@@ -32,4 +32,12 @@ public class NotificationsFragment extends Fragment {
         });*/
         return root;
     }
+
+    @Override
+    public void onActivityCreated(@Nullable @org.jetbrains.annotations.Nullable Bundle savedInstanceState) {
+        super.onActivityCreated(savedInstanceState);
+        TextView nameText = (TextView) getActivity().findViewById(R.id.name);
+        String name = getActivity().getIntent().getStringExtra("name");
+        nameText.setText(name);
+    }
 }
