@@ -80,7 +80,7 @@ public class HomeFragment extends Fragment implements LocationSource {
         homeViewModel = new ViewModelProvider(this).get(HomeViewModel.class);
         View root = inflater.inflate(R.layout.navigation_home, container, false);
         //列表，上传切换
-        final View view = inflater.inflate(R.layout.navigation_home, container, false);;
+        final View view = inflater.inflate(R.layout.navigation_home, container, false);
         mBtnInputFragment2 = view.findViewById(R.id.btn_list);
         mphoto =  view.findViewById(R.id.btn_shangchuan);
         mBtnInputFragment2.setOnClickListener(new View.OnClickListener(){

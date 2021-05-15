@@ -3,24 +3,30 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
+import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.Toast;
 
 import com.ejlchina.okhttps.HTTP;
 import com.ejlchina.okhttps.JacksonMsgConvertor;
 
+import org.jetbrains.annotations.NotNull;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import edu.scse.tracehub.R;
+import edu.scse.tracehub.ui.home.photo;
 import okhttp3.Response;
 import okhttp3.ResponseBody;
 
@@ -45,12 +51,23 @@ import okhttp3.ResponseBody;
 
 public class DashboardFragment extends Fragment {
     private DashboardViewModel dashboardViewModel;
+    private Button upphoto;
 
-    public View onCreateView(@NonNull LayoutInflater inflater,
+    public View onCreateView(@NotNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
         dashboardViewModel =
                 new ViewModelProvider(this).get(DashboardViewModel.class);
-        View root = inflater.inflate(R.layout.navigation_dashboard, container, false);
+        //View root = inflater.inflate(R.layout.navigation_dashboard, container, false);
+        //列表，上传切换
+        final View root = inflater.inflate(R.layout.navigation_dashboard, container, false);
+        upphoto = root.findViewById(R.id.btn_shangchuan2);
+        upphoto.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getActivity(), sharing.class);
+                startActivity(intent);
+            }
+        });
         return root;
     }
 
