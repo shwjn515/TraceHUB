@@ -57,12 +57,6 @@
                 android:textAlignment="viewStart"
                 android:textColor="#ffffff"
                 android:textSize="20sp" />
-            <Button
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="3dp"
-                android:background="@color/saswell_pink"
-                />
 
             <Button
                 android:layout_width="match_parent"
@@ -71,15 +65,10 @@
                 android:background="@color/saswell_pink2"
                 android:drawableRight="@drawable/icon_tiaozhuan"
                 android:drawablePadding="5dp"
-                android:text="开启定位"
+                android:text="       开启定位"
                 android:textAlignment="textStart"
-                android:textColor="#ffffff" />
-            <Button
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="3dp"
-                android:background="@color/saswell_pink"
-                />
+                android:textColor="#ffffff"
+                android:textSize="20sp"/>
 
             <Button
                 android:layout_width="match_parent"
@@ -88,15 +77,10 @@
                 android:background="@color/saswell_pink2"
                 android:drawableRight="@drawable/icon_tiaozhuan"
                 android:drawablePadding="5dp"
-                android:text="隐私设置"
+                android:text="       隐私设置"
                 android:textAlignment="textStart"
-                android:textColor="#ffffff" />
-            <Button
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="3dp"
-                android:background="@color/saswell_pink"
-                />
+                android:textColor="#ffffff"
+                android:textSize="20sp"/>
 
             <Button
                 android:layout_width="match_parent"
@@ -105,9 +89,10 @@
                 android:background="@color/saswell_pink2"
                 android:drawableRight="@drawable/icon_tiaozhuan"
                 android:drawablePadding="5dp"
-                android:text="图片上传清晰度"
+                android:text="       图片上传清晰度"
                 android:textAlignment="textStart"
-                android:textColor="#ffffff" />
+                android:textColor="#ffffff"
+                android:textSize="20sp"/>
 
 
         </LinearLayout>

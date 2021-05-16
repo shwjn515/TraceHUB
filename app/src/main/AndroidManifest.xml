@@ -94,6 +94,7 @@
         <activity android:name=".ui.dashboard.sharing" />
         <activity android:name=".ui.notifications.FeedbackActivity" />
         <activity android:name=".ui.notifications.QuestionsActivity" />
+        <activity android:name=".ui.notifications.SettingActivity" />
 
 
         <provider

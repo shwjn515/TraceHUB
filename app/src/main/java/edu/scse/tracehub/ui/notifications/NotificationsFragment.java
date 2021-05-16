@@ -51,6 +51,15 @@ public class NotificationsFragment extends Fragment {
                 startActivity(intent);
             }
         });
+        Button setting = (Button) getActivity().findViewById(R.id.setting);
+        setting.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // 给 反馈按钮  添加点击响应事件
+                Intent intent =new Intent(getActivity(),SettingActivity.class);
+                startActivity(intent);
+            }
+        });
         Button questions = (Button) getActivity().findViewById(R.id.questions);
         questions.setOnClickListener(new View.OnClickListener() {
             @Override
