@@ -24,9 +24,10 @@ public class sharing extends Activity {
 
     private ImageView btn_choose_picture;
     private ImageView iv_show_picture;
+    private Button btn_baocun;
     private Uri imageUri;// 拍照时的图片uri
-
-
+    public Bitmap bitmap;
+    public Active active;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -48,7 +49,20 @@ public class sharing extends Activity {
                 SelectPicture();// 拍照或者调用图库
 
             }
+
         });
+        // 展示保存按钮点击事件
+        btn_baocun.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                DashboardFragment.addData(active,bitmap);
+                DashboardFragment.flush();
+                Intent intent = new Intent(sharing.this, DashboardFragment.class);
+                startActivity(intent);
+            }
+
+        });
+
 
     }
 
@@ -166,7 +180,7 @@ public class sharing extends Activity {
                         // 展示图库中选择裁剪后的图片
                         if(data != null){
                             // 根据返回的data，获取Bitmap对象
-                            Bitmap bitmap = data.getExtras().getParcelable("data");
+                            bitmap = data.getExtras().getParcelable("data");
                             // 展示图片
                             iv_show_picture.setImageBitmap(bitmap);
 
@@ -187,6 +201,8 @@ public class sharing extends Activity {
     private void setViews() {
         btn_choose_picture = (ImageView) findViewById(R.id.ivCamera2);
         iv_show_picture = (ImageView)findViewById(R.id.ivPhoto2);
+        btn_baocun=(Button)findViewById(R.id.baocun);
+
     }
 }
 
