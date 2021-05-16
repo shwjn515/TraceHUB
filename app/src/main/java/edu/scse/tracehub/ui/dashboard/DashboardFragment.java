@@ -70,18 +70,22 @@ public class DashboardFragment extends Fragment {
         });
         return root;
     }
-
+    static ActivesAdapter adapter;
+    public static void flush()
+    {
+        adapter.notifyDataSetChanged();
+    }
     @Override
     public void onActivityCreated(@Nullable @org.jetbrains.annotations.Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
         //请求预览图
-        getActivesList();
+        //getActivesList();
         //布置Recycle
         RecyclerView recyclerView = (RecyclerView) getActivity().findViewById(R.id.recyclerview);
         int span = 2;
         GridLayoutManager manager = new GridLayoutManager(getContext(),span);
         recyclerView.setLayoutManager(manager);
-        ActivesAdapter adapter = new ActivesAdapter(getContext(),
+        adapter = new ActivesAdapter(getContext(),
                 activeList,imgs);
         adapter.setOnItemClickListener(new ActivesAdapter.OnItemClickListener() {
             @Override
@@ -95,8 +99,13 @@ public class DashboardFragment extends Fragment {
     }
 
     // 放入列表的数据集
-    List<Active> activeList = new ArrayList<>();
-    List<Bitmap> imgs = new ArrayList<>();
+    static List<Active> activeList = new ArrayList<>();
+    static List<Bitmap> imgs = new ArrayList<>();
+    public static void addData(Active active,Bitmap img)
+    {
+        activeList.add(active);
+        imgs.add(img);
+    }
     private void getActivesList()
     {
         String url = "http://117.78.3.88:8080";

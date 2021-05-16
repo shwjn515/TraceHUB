@@ -38,7 +38,7 @@
         android:layout_height="50dp"
         android:layout_alignRight="@id/textView3"
         android:background="@color/saswell_pink2"
-        android:text="保存"
+        android:text="上传"
         android:textColor="@color/saswell_white" />
 
     <EditText
@@ -52,7 +52,7 @@
         android:layout_marginTop="80dp"
         android:layout_marginEnd="0dp"
         android:background="@drawable/biankuang"
-        android:text="  描述一下图片吧"
+        android:text="  说说心情吧..."
         android:textColor="@color/saswell_white" />
 
     <ImageView
@@ -74,7 +74,7 @@
         android:layout_alignParentBottom="true"
         android:layout_marginStart="65dp"
         android:layout_marginLeft="150dp"
-        android:layout_marginTop="250dp"
+        android:layout_marginTop="260dp"
         android:layout_marginEnd="65dp"
         android:layout_marginBottom="275dp"
         android:background="@drawable/cat" />
