@@ -56,7 +56,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:networkSecurityConfig="@xml/network_security_config">
-        <meta-data android:name="com.amap.api.v2.apikey" android:value="bdeb7336714e13109cd6c956c2724112">
+        <meta-data android:name="com.amap.api.v2.apikey" android:value="c59d8c6cdfa178cfa0f831572b72e4ba">
             //开发者申请的key
         </meta-data>
         <service android:name="com.amap.api.location.APSService" />
@@ -92,6 +92,9 @@
         <activity android:name=".ui.upload.Albums" />
         <activity android:name=".ui.upload.mainup" />
         <activity android:name=".ui.dashboard.sharing" />
+        <activity android:name=".ui.notifications.FeedbackActivity" />
+        <activity android:name=".ui.notifications.QuestionsActivity" />
+
 
         <provider
             android:name="androidx.core.content.FileProvider"

@@ -255,11 +255,12 @@ public class HomeFragment extends Fragment implements LocationSource {
                         mListener.onLocationChanged(aMapLocation);
                         //画轨迹
                         if (isTrace) {
+                            PolylineOptions options=new PolylineOptions();
                             latLngs.add(new LatLng(aMapLocation.getLatitude(),aMapLocation.getLongitude()));
                             PathSmoothTool mpathSmoothTool = new PathSmoothTool();
                             mpathSmoothTool.setIntensity(4);
                             List<LatLng> pathoptimizeList = mpathSmoothTool.pathOptimize(latLngs);
-                            Polyline line = aMap.addPolyline(new PolylineOptions().
+                            Polyline line = aMap.addPolyline(options.
                                     addAll(pathoptimizeList).width(10).color(Color.argb(255, 1, 1, 1)));
                             line.setColor(0xFFe495c7);
                             line.setVisible(true);
