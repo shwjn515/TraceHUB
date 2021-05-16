@@ -1,4 +1,5 @@
 package edu.scse.tracehub.ui.dashboard;
+import androidx.annotation.DrawableRes;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
@@ -8,6 +9,7 @@ import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
+import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
@@ -79,6 +81,7 @@ public class DashboardFragment extends Fragment {
     public void onActivityCreated(@Nullable @org.jetbrains.annotations.Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
         //请求预览图
+        addsm();
         //getActivesList();
         //布置Recycle
         RecyclerView recyclerView = (RecyclerView) getActivity().findViewById(R.id.recyclerview);
@@ -99,8 +102,43 @@ public class DashboardFragment extends Fragment {
     }
 
     // 放入列表的数据集
-    static List<Active> activeList = new ArrayList<>();
+    static List<Active> activeList = new ArrayList<Active>();
     static List<Bitmap> imgs = new ArrayList<>();
+
+    public void addsm(){
+
+        Active active1=new Active();
+        Bitmap bitmap;
+        Resources res=getResources();
+        active1.text="快乐的一天";
+        bitmap=BitmapFactory.decodeResource(res,R.drawable.s1);
+        activeList.add(active1);
+        imgs.add(bitmap);
+
+        Active active2=new Active();
+        active2.text="北洋时光";
+        bitmap=BitmapFactory.decodeResource(res,R.drawable.s2);
+        activeList.add(active2);
+        imgs.add(bitmap);
+
+        Active active3=new Active();
+        active3.text="体育中心";
+        bitmap=BitmapFactory.decodeResource(res,R.drawable.s3);
+        activeList.add(active3);
+        imgs.add(bitmap);
+
+        Active active4=new Active();
+        active4.text="邂逅时光";
+        bitmap=BitmapFactory.decodeResource(res,R.drawable.s4);
+        activeList.add(active4);
+        imgs.add(bitmap);
+
+        Active active5=new Active();
+        active5.text="大学生活动中心";
+        bitmap=BitmapFactory.decodeResource(res,R.drawable.s5);
+        activeList.add(active5);
+        imgs.add(bitmap);
+    }
     public static void addData(Active active,Bitmap img)
     {
         activeList.add(active);
