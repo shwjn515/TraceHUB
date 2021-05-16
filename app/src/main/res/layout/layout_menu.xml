@@ -17,50 +17,13 @@
             android:background="@color/saswell_pink2"
             android:text="返回"/>
 
-        <TextView
-            style="@style/MenuTabText"
+        <ImageView
+            android:id="@+id/ivCamera"
             android:layout_width="match_parent"
-            android:layout_height="65dp"
-            android:background="@color/saswell_pink"
-            android:drawableStart="@drawable/cat"
-            android:text="新闻" />
+            android:layout_height="680dp"
 
-        <TextView
-            style="@style/MenuTabText"
-            android:layout_height="65dp"
-            android:background="@color/saswell_pink"
-            android:drawableStart="@drawable/cat2"
-            android:text="订阅" />
+            android:background="@drawable/list2" />
 
-        <TextView
-            style="@style/MenuTabText"
-            android:layout_height="65dp"
-            android:background="@color/saswell_pink"
-            android:text="跟帖"
-            app:drawableLeftCompat="@drawable/icon_com1" />
-        <TextView
-            style="@style/MenuTabText"
-            android:layout_height="65dp"
-            android:background="@color/saswell_pink"
-            android:text="图片"
-            app:drawableStartCompat="@drawable/icon_com1" />
-        <TextView
-            style="@style/MenuTabText"
-            android:layout_height="65dp"
-            android:background="@color/saswell_pink"
-            android:text="话题"
-            app:drawableLeftCompat="@drawable/icon_com1" />
-        <TextView
-            style="@style/MenuTabText"
-            android:layout_height="65dp"
-            android:background="@color/saswell_pink"
-            android:text="投票"
-            app:drawableLeftCompat="@drawable/icon_com1" />
-        <TextView
-            style="@style/MenuTabText"
-            android:layout_height="65dp"
-            android:background="@color/saswell_pink"
-            android:text="聚合阅读"
-            android:drawableStart="@drawable/icon_com1"/>
+
     </LinearLayout>
 </ScrollView>

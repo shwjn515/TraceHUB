@@ -269,7 +269,6 @@ public class HomeFragment extends Fragment implements LocationSource {
                         Log.e("AmapError", "location Error, ErrCode:"
                                 + aMapLocation.getErrorCode() + ", errInfo:"
                                 + aMapLocation.getErrorInfo());
-                        Toast.makeText(getContext(), "定位失败", Toast.LENGTH_LONG).show();
                     }
                 }
             }
